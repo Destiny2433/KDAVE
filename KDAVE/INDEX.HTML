@@ -1,0 +1,366 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KDAVE Media</title>
+  
+  <style>
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+    body {
+      background-color: #121212;
+      color: #ddd;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+}
+    a {
+      color: #ff9900;
+      text-decoration: none;
+}
+    a:hover { text-decoration: underline;}
+
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: #1f1f1f;
+      padding: 15px 30px;
+      display: flex; align-items: center; justify-content: space-between;
+      z-index: 10000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.8);
+}
+.logo { height: 50px;}
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+}
+    nav li {
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 16px;
+      color: #ddd;
+      user-select: none;
+      transition: color 0.3s;
+}
+    nav li:hover { color: #ff9900;}
+
+    #welcome-section {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 40px 20px;
+      text-align: center;
+      background: #121212;
+}
+    #welcome-section h2 {
+      font-size: 2.8rem;
+      color: #ff9900;
+      margin-bottom: 20px;
+}
+    #welcome-section p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      color: #ccc;
+}
+
+.hero {
+      height: 100vh;
+      background: url('image0.jpg') center center/cover no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      position: relative;
+      text-align: center;
+}
+.hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(18,18,18,0.75);
+      z-index: 0;
+}
+.hero-content {
+      position: relative;
+      max-width: 700px;
+      color: #ff9900;
+      z-index: 1;
+}
+.hero-content h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+}
+.hero-content p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      color: #ddd;
+}
+.btn {
+      background: #ff9900;
+      color: #121212;
+      padding: 14px 36px;
+      font-weight: bold;
+      border-radius: 30px;
+      cursor: pointer;
+      border: none;
+      font-size: 1.1rem;
+}
+.btn:hover { background: #e67e00;}
+
+    section {
+      max-width: 900px;
+      margin: 0 auto 60px;
+      padding: 100px 20px 40px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease, transform 1s ease;
+}
+    section.active {
+      opacity: 1;
+      transform: translateY(0);
+}
+    section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      text-align: center;
+      color: #ff9900;
+}
+    section p, section ul {
+      font-size: 1.1rem;
+      color: #ccc;
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 30px;
+}
+    section ul {
+      list-style: disc inside;
+}
+
+    footer {
+      text-align: center;
+      padding: 20px 10px;
+      background: #1f1f1f;
+      color: #888;
+      font-size: 0.9rem;
+}
+
+.modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+      z-index: 100000;
+}
+.modal.active {
+      opacity: 1;
+pointer-events: auto;
+}
+.modal-content {
+      background: #222;
+      color: #eee;
+      max-width: 600px;
+      padding: 30px 40px;
+      border-radius: 12px;
+      position: relative;
+      box-shadow: 0 0 20px #ff9900aa;
+      max-height: 80vh;
+      overflow-y: auto;
+}
+.modal-content h3 {
+      color: #ff9900;
+      margin-bottom: 15px;
+      font-size: 2rem;
+}
+.modal-content p,.modal-content ul {
+      font-size: 1.1rem;
+      color: #ddd;
+      line-height: 1.5;
+}
+.modal-content ul {
+      list-style: disc inside;
+      margin-bottom: 20px;
+}
+.close-btn {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 28px;
+      color: #ff9900;
+      cursor: pointer;
+}
+.close-btn:hover {
+      color: #e67e00;
+}
+
+    @media (max-width: 600px) {
+.hero-content h1 { font-size: 2.2rem;}
+      nav ul { gap: 15px;}
+}
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="logo.jpg" alt="KDAVE Logo" class="logo" />
+   
+  </header>
+
+  <section id="welcome-section" class="content-section">
+    <h2>Welcome to KDAVE Media</h2>
+    <p>Your trusted partner in unlocking online income opportunities. Join us to learn, grow, and succeed in the digital economy with expert guidance and proven strategies.</p>
+    <a href="#about-section" class="btn">Learn More About KDAVE</a>
+  </section>
+  
+  <section id="about-section" class="content-section">
+    <h2>About KDAVE</h2>
+    <div style="display:flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 30px; max-width: 900px; margin: 0 auto;">
+      <img src="people-image.jpg" alt="KDAVE Helping People" style="max-width: 300px; border-radius: 15px; box-shadow: 0 0 20px #ff9900aa;" />
+      <div style="max-width: 550px; color: #ccc; font-size: 1.1rem; line-height: 1.6;">
+        <p>KDAVE is a passionate digital mentor dedicated to helping individuals unlock their potential to make money online. With years of experience in digital marketing, content creation, and online business strategies, KDAVE empowers students, hustlers, and entrepreneurs to build sustainable income streams through practical education and personalized support.</p>
+        <p>Through workshops, coaching, and a vibrant community, KDAVE guides you step-by-step to navigate the digital landscape, avoid common pitfalls, and seize profitable opportunities. Whether you're starting from scratch or scaling your online presence, KDAVE is here to help you succeed.</p>
+        <p>Join KDAVE's movement today and transform your passion into profit with confidence and clarity.</p>
+      </div>
+    </div>
+  </section>
+<section id="mission-section" class="content-section">
+    <h2>Mission</h2>
+    <p>To become Nigeria’s leading digital networker and media powerhouse — a platform that uplifts the next generation by fusing creativity, technology, and opportunity into a movement of transformation and social impact.
+
+
+
+</p>
+  </section>
+  
+
+  
+
+  <section id="vision-section" class="content-section">
+    <h2>Vision</h2>
+    <p>To become Nigeria’s leading digital networker and media company dedicated to uplifting the next generation through technology and creativity.</p>
+  </section>
+
+  <section id="offerings-section" class="content-section">
+    <h2>What We Offer</h2>
+    <ul>
+      <li>Digital Marketing & Social Media Strategy</li>
+      <li>Video Production and Livestream Services</li>
+      <li>Technology Training & Workshops</li>
+      <li>Networking Events for Entrepreneurs</li>
+      <li>Content Creation & Branding</li>
+      <li>And many more...</li>
+    </ul>
+  </section>
+
+  <section id="contact-section" class="content-section">
+    <h2>Contact Us</h2>
+    <p>Email: <a href="mailto:adeoluwakd7@gmail.com">adeoluwakd7@gmail.com</a></p>
+    <p>WhatsApp: <a href="https://wa.me/2348147117361?text=Hello%20KDAVE%20MEDIA,%0AI'm%20ready%20to%20get%20started%20with%20making%20money.%20💛%0ALooking%20forward%20to%20enrolling%20and%20joining%20the%20journey!" target="_blank"> +234 814 711 7361</p></a>
+  </section>
+  <footer><a href="https://wa.me/2348147117361?text=Hello%20KDAVE%20MEDIA,%0AI'm%20ready%20to%20get%20started%20with%20making%20money.%20💛%0ALooking%20forward%20to%20enrolling%20and%20joining%20the%20journey!" target="_blank">
+  Send Message to KDAVE Media on WhatsApp
+</a>
+
+    <p>&copy; 2025 KDAVE Media. All rights reserved.</p>
+    <p>Created By <a href="https://destiny2433.github.io/HiveryTech1/HiveryTech/index.html">HiveryTech LTD</a></p>
+  </footer>
+
+  <!-- Modal -->
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <span class="close-btn" id="modalClose">&times;</span>
+      <div id="modalBody">
+        <!-- Modal content loads dynamically here -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Scroll animation for sections
+    function isInViewport(el) {
+      const rect = el.getBoundingClientRect();
+      return rect.top <= (window.innerHeight || document.documentElement.clientHeight) - 100;
+}
+
+    function scrollAnimate() {
+      document.querySelectorAll('.content-section').forEach(section => {
+        if (isInViewport(section)) {
+          section.classList.add('active');
+}
+});
+}
+
+    window.addEventListener('scroll', scrollAnimate);
+    window.addEventListener('load', scrollAnimate);
+
+    // Modal functionality
+    const modal = document.getElementById('modal');
+    const modalBody = document.getElementById('modalBody');
+    const closeBtn = document.getElementById('modalClose');
+
+    const modalContents = {
+      mission: `
+        <h3>Our Mission</h3>
+        <p>To empower students and hustlers through innovative digital solutions, education, and networking opportunities that open doors to success in the modern world.</p>`,
+      vision: `
+        <h3>Our Vision</h3>
+        <p>To become Nigeria’s leading digital networker and media company dedicated to uplifting the next generation through technology and creativity.</p>`,
+      offerings: `
+        <h3>What We Offer</h3>
+        <ul>
+          <li>Digital Marketing & Social Media Strategy</li>
+          <li>Video Production and Livestream Services</li>
+          <li>Technology Training & Workshops</li>
+          <li>Networking Events for Entrepreneurs</li>
+          <li>Content Creation & Branding</li>
+          <li>And many more...</li>
+        </ul>`,
+      contact: `
+        <h3>Contact Us</h3>
+        <p>Email: <a href="mailto:info@kdavemedia.com" style="color:#ff9900;">info@kdavemedia.com</a></p>
+        <p>Phone: +234 123 456 7890</p>`,
+      about: `
+        <h3>About KDAVE</h3>
+        <p>KDAVE is a passionate digital mentor dedicated to helping individuals unlock their potential to make money online. With years of experience in digital marketing, content creation, and online business strategies, KDAVE empowers students, hustlers, and entrepreneurs to build sustainable income streams through practical education and personalized support.</p>
+        <p>Through workshops, coaching, and a vibrant community, KDAVE guides you step-by-step to navigate the digital landscape, avoid common pitfalls, and seize profitable opportunities. Whether you're starting from scratch or scaling your online presence, KDAVE is here to help you succeed.</p>
+        <p>Join KDAVE's movement today and transform your passion into profit with confidence and clarity.</p>`
+};
+
+    function openModal(key) {
+      modalBody.innerHTML = modalContents[key] || '<p>No content found.</p>';
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+}
+
+    function closeModal() {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+}
+
+    document.querySelectorAll('nav li,.btn').forEach(el => {
+      el.addEventListener('click', () => {
+        const key = el.getAttribute('data-modal');
+        if (key) openModal(key);
+});
+});
+
+    closeBtn.addEventListener('click', closeModal);
+
+    modal.addEventListener('click', e => {
+      if (e.target === modal) closeModal();
+});
+  </script>
+
+</body>
+</html>
+
+
